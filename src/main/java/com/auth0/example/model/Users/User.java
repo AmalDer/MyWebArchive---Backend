@@ -1,25 +1,48 @@
 package com.auth0.example.model.Users;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import com.auth0.example.model.Reclamation;
 import com.auth0.example.model.Enums.PermissionLevel;
 
 public class User {
 	private String uid;
-	private String email;
 	private String displayName;
 	private String imageUrl;
-	private final List<Reclamation> reclamations = new ArrayList<Reclamation>(); // ommited by lombok
+	private String mle;
+	private String type;
+	private String niveauetudes;
+	
+	public User(String uid, String displayName, String imageUrl, String mle, String type,
+			String niveauetudes) {
+		super();
+		this.uid = uid;
+		this.displayName = displayName;
+		this.imageUrl = imageUrl;
+		this.mle = mle;
+		this.type = type;
+		this.niveauetudes = niveauetudes;
+	}
 
-	public User(String uid, String email, String displayName, String imageUrl, Collection<Reclamation> reclamations) {
-		setUid(uid);
-		setEmail(email);
-		setDisplayName(displayName);
-		setImageUrl(imageUrl);
-		addReclamations(reclamations);
+	public String getMle() {
+		return mle;
+	}
+
+	public void setMle(String mle) {
+		this.mle = mle;
+	}
+
+	public String getNiveauetudes() {
+		return niveauetudes;
+	}
+
+	public void setNiveauetudes(String niveauetudes) {
+		this.niveauetudes = niveauetudes;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getUid() {
@@ -29,14 +52,6 @@ public class User {
 	// TODO: needs to affect db
 	public void setUid(String uid) {
 		this.uid = uid;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getDisplayName() {
@@ -56,9 +71,6 @@ public class User {
 		this.imageUrl = imageUrl;
 	}
 
-	public List<Reclamation> getReclamations() {
-		return reclamations;
-	}
 
 	public static PermissionLevel getDBPermissionLevel(String uid) {
 		return null;
@@ -66,10 +78,5 @@ public class User {
 
 	public static Boolean getDBIsTeacher(String uid) {
 		return null;
-	}
-
-	// TODO: needs to affect db
-	public void addReclamations(Collection<Reclamation> r) {
-		r.stream().forEach(reclamations::add);
 	}
 }
